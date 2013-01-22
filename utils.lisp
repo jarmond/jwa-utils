@@ -153,19 +153,18 @@
 
 ;;; Fig 4.6
 
-;; ** included in Alexandria as map-iota **
-;; (defun mapa-b (fn a b &optional (step 1))
-;;   "Apply fn to integers in range a to b and return list of results."
-;;   (do ((i a (+ i step))
-;;        (result nil))
-;;       ((> i b) (nreverse result))
-;;     (push (funcall fn i) result)))
+(defun mapa-b (fn a b &optional (step 1))
+  "Apply fn to integers in range a to b and return list of results."
+  (do ((i a (+ i step))
+       (result nil))
+      ((> i b) (nreverse result))
+    (push (funcall fn i) result)))
 
-;; (defun map0-n (fn n)
-;;   (mapa-b fn 0 n))
+(defun map0-n (fn n)
+  (mapa-b fn 0 n))
 
-;; (defun map1-n (fn n)
-;;   (mapa-b fn 1 n))
+(defun map1-n (fn n)
+  (mapa-b fn 1 n))
 
 (defun map-> (fn start test-fn succ-fn)
   "Apply fn to start, followed by objects returned by succ-fn, until
