@@ -6,12 +6,10 @@
 
 (defparameter *byte-prefixes*
   '("B" "KiB" "MiB" "GiB" "TiB" "PiB" "EiB" "ZiB" "YiB"))
-(defparameter *max-byte-prefix* 8)
+(defparameter *max-byte-prefix* (1- (length *byte-prefixes*)))
 
 (defun bytes-prefixed-string (bytes &optional (precision 1))
   "Formats a number of bytes to a string with appropriate suffix."
-  (let ((exp *max-byte-prefix*))
-    (while (< (/ bytes (expt 1024 exp)) 1)
-      (decf exp))
+  (let ((exp (min (floor (log bytes 1024)) *max-byte-prefix*)))
     (format nil "~,vf ~a" precision
             (/ bytes (expt 1024 exp)) (nth exp *byte-prefixes*))))
