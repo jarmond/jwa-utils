@@ -268,7 +268,20 @@
 ;;; String functions
 
 (defun string-cat (&rest strings)
+  "Concatenates sequence of strings."
   (apply #'concatenate 'string strings))
+
+(defun string-join (joiner string-list)
+  "Concatenates list of strings, with joiner as a delimiter."
+  (string-cat
+   (apply #'string-cat (mapcar (lambda (s) (concatenate 'string s joiner))
+                               (subseq string-list 0 (1- (length string-list)))))
+   (last1 string-list)))
+
+;;; Plists
+
+(defun getf-many (place indicators)
+  (mapcar (lambda (i) (getf place i)) indicators))
 
 
 ;;; Definition macros
