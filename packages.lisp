@@ -47,8 +47,10 @@
 
    :string-cat
    :string-join
+   :count-occurences
 
-   :getf-many))
+   :getf-many
+   :plist-values))
 
 (defpackage #:jwa-utils.size
   (:use #:cl

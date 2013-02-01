@@ -278,11 +278,31 @@
                                (subseq string-list 0 (1- (length string-list)))))
    (last1 string-list)))
 
+(defun count-occurences (pattern string)
+  (loop
+     with start = 0
+     with count = 0
+     while start do
+       (when (setf start (search pattern string :start2 start))
+         (incf count)
+         (incf start (length pattern)))
+     finally (return count)))
+
 ;;; Plists
 
-(defun getf-many (place indicators)
-  (mapcar (lambda (i) (getf place i)) indicators))
+(defun getf-many (plist keys)
+  "Get list of values associated with keys."
+  (loop while plist 
+     for (key value tail) = (get-properties plist keys)
+     collecting value
+     do (setf plist (cddr tail))))
 
+(defun plist-values (plist)
+  "Get all values from a plist."
+  (loop while plist
+     for value = (cadr plist)
+     collecting value
+     do (setf plist (cddr plist))))
 
 ;;; Definition macros
 
