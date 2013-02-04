@@ -317,3 +317,27 @@
       (if reset
           (setf counter 0)
           (incf counter)))))
+
+;;; User interaction
+
+(defun yes-no-ignore-or-quit (&optional control &rest arguments)
+  "Ask question and parse response from user, allowing yes, no, ignore or quit
+responses. Returns :yes, :no, :ignore, or :quit symbols."
+  (loop
+     with response
+     do
+       (when control
+         (fresh-line)
+         (format *query-io* control arguments))
+       (write-string " (Y, N, I or Q) " *query-io*)
+       (setf response (string-downcase (read-line)))
+       (when (> (length response) 0)
+         (case (elt response 0)
+           (#\y (return :yes))
+           (#\n (return :no))
+           (#\i (return :ignore))
+           (#\q (return :quit))
+           (otherwise (progn
+                        (fresh-line)
+                        (write-string "Please type \"y\" for yes, \"n\" for no, \"i\" ignore or \"q\" for quit.")))))))
+  

@@ -50,10 +50,28 @@
    :count-occurences
 
    :getf-many
-   :plist-values))
+   :plist-values
+
+   :yes-no-ignore-or-quit))
 
 (defpackage #:jwa-utils.size
   (:use #:cl
         #:jwa-utils)
   (:export
    :bytes-prefixed-string))
+
+(defpackage #:jwa-utils.text
+  (:use #:cl
+        #:jwa-utils
+        #:alexandria)
+  (:export
+   :+first-ascii-printable-code+
+   :+last-ascii-printable-code+
+
+   :sentence-delimiter-p
+   :intra-word-punctuation-p
+   :word-char-p
+   :ascii-printable-p
+
+   :split-sentences
+   :split-words))
