@@ -256,13 +256,6 @@
          ,@body)))
 
 
-;;; Mapping functions
-
-(defmacro maplines (function &optional (stream *standard-input*) (eof-value :eof))
-  (with-gensyms (line)
-    `(do ((,line (read-line ,stream nil ,eof-value) (read-line ,stream nil ,eof-value)))
-         ((eq ,line ,eof-value))
-       (funcall ,function ,line))))
 
 
 ;;; String functions
@@ -341,3 +334,29 @@ responses. Returns :yes, :no, :ignore, or :quit symbols."
                         (fresh-line)
                         (write-string "Please type \"y\" for yes, \"n\" for no, \"i\" ignore or \"q\" for quit.")))))))
   
+
+;;; Stream processing
+
+(defmacro dolines (function &key (stream *standard-input*) (eof-value :eof)
+                              (test '#'identity))
+  "Apply function to each line from stream, if :test function returns true,
+collecting results into list."
+  (with-gensyms (line)
+    `(do ((,line (read-line ,stream nil ,eof-value)
+                 (read-line ,stream nil ,eof-value)))
+         ((eq ,line ,eof-value))
+       (when (funcall ,test ,line)
+         (funcall ,function ,line)))))
+
+
+(defmacro maplines (function &key (stream *standard-input*) (eof-value :eof)
+                               (test '#'identity))
+  "Apply function to each line from stream, if :test function returns true,
+collecting results into list."
+  (with-gensyms (line list)
+    `(do ((,list nil)
+          (,line (read-line ,stream nil ,eof-value)
+                 (read-line ,stream nil ,eof-value)))
+         ((eq ,line ,eof-value) (nreverse ,list))
+       (when (funcall ,test ,line)
+         (push (funcall ,function ,line) ,list)))))

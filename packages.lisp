@@ -43,7 +43,6 @@
    :while
    :until
    :for
-   :maplines
 
    :string-cat
    :string-join
@@ -52,7 +51,10 @@
    :getf-many
    :plist-values
 
-   :yes-no-ignore-or-quit))
+   :yes-no-ignore-or-quit
+
+   :dolines
+   :maplines))
 
 (defpackage #:jwa-utils.size
   (:use #:cl
@@ -75,3 +77,4 @@
 
    :split-sentences
    :split-words))
+
