@@ -1,0 +1,6 @@
+JWA-UTILS
+---------
+
+My personal library of indispensible Common Lisp utilities. Some are copied
+directly from Paul Graham's On Lisp; some others are probably inspired by other
+code elsewhere. Code is free to be used for any purpose.
