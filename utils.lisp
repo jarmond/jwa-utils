@@ -52,14 +52,6 @@
 
 ;;; Fig 4.3
 
-;; In ALEXANDRIA
-;; (defun flatten (x)
-;;   (labels ((rec (x acc)
-;;              (cond ((null x) acc)
-;;                    ((atom x) (cons x acc))
-;;                    (t (rec (car x) (rec (cdr x) acc))))))
-;;     (rec x nil)))
-
 (defun prune (test tree)
   (labels ((rec (tree acc)
              (cond ((null tree) (nreverse acc))
@@ -174,8 +166,6 @@
       ((funcall test-fn i) (nreverse result))
     (push (funcall fn i) result)))
 
-;; mappend supplied by ALEXANDRIA
-
 (defun mapcars (fn &rest lsts)
   "MAPCAR for concatenation of multiple lists."
   (let ((result nil))
@@ -219,8 +209,6 @@
 (defun mkstr (&rest args)
   (with-output-to-string (s)
     (dolist (a args) (princ a s))))
-
-;; symb supplied by ALEXANDRIA as symbolicate
 
 (defun reread (&rest args)
   "Converts args to concatenated string and reads back as Lisp object."
