@@ -67,13 +67,11 @@
         #:jwa-utils
         #:alexandria)
   (:export
-   :+first-ascii-printable-code+
-   :+last-ascii-printable-code+
 
    :sentence-delimiter-p
    :intra-word-punctuation-p
    :word-char-p
-   :ascii-printable-p
+   :punctuation-p
 
    :split-sentences
    :split-words))

@@ -27,6 +27,11 @@ within a (English) word."
   (or (alpha-char-p c)
       (intra-word-punctuation-p c)))
 
+(defun punctuation-p (c)
+  "Return true if c is an (English) punctuation character."
+  (and (characterp c)
+       (member c '(#\( #\) #\: #\, #\- #\! #\. #\? #\` #\' #\" #\; #\/))))
+
 ;;;
 ;;; Splitters
 ;;;
