@@ -74,6 +74,8 @@
    :punctuation-char-p
    :whitespace-char-p
 
+   :trim-if
+
    :split-sentences
    :split-words))
 

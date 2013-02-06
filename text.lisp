@@ -40,6 +40,19 @@ within a (English) word."
            (char= c #\Newline))))
 
 ;;;
+;;; Trimming
+;;;
+
+(defun trim-if (predicate sequence)
+  "Remove elements satisfying predicate from beginning and end of sequence."
+  (let* ((length (length sequence)) (start 0) (end (1- length)))
+    (while (and (< start length) (funcall predicate (elt sequence start)))
+      (incf start))
+    (while (and (> end start) (funcall predicate (elt sequence end)))
+      (decf end))
+    (subseq sequence start (1+ end))))
+
+;;;
 ;;; Splitters
 ;;;
 
@@ -50,8 +63,9 @@ within a (English) word."
 
 (defun split-words (sentence)
   "Break sentence into a list of words."
-  (split-sequence:split-sequence-if #'whitespace-char-p sentence
-                                        :remove-empty-subseqs t))
+  (mapcar (lambda (word) (trim-if #'punctuation-char-p word))
+          (split-sequence:split-sequence-if #'whitespace-char-p sentence
+                                            :remove-empty-subseqs t)))
 
 ;;;
 ;;; Iteration
