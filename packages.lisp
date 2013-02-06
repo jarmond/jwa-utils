@@ -71,7 +71,8 @@
    :sentence-delimiter-p
    :intra-word-punctuation-p
    :word-char-p
-   :punctuation-p
+   :punctuation-char-p
+   :whitespace-char-p
 
    :split-sentences
    :split-words))

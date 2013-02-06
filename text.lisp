@@ -27,10 +27,17 @@ within a (English) word."
   (or (alpha-char-p c)
       (intra-word-punctuation-p c)))
 
-(defun punctuation-p (c)
+(defun punctuation-char-p (c)
   "Return true if c is an (English) punctuation character."
   (and (characterp c)
        (member c '(#\( #\) #\: #\, #\- #\! #\. #\? #\` #\' #\" #\; #\/))))
+
+(defun whitespace-char-p (c)
+  "Return true if c is whitespace."
+  (and (characterp c)
+       (or (char= c #\Space)
+           (char= c #\Tab)
+           (char= c #\Newline))))
 
 ;;;
 ;;; Splitters
@@ -43,7 +50,7 @@ within a (English) word."
 
 (defun split-words (sentence)
   "Break sentence into a list of words."
-  (split-sequence:split-sequence-if-not #'word-char-p sentence
+  (split-sequence:split-sequence-if #'whitespace-char-p sentence
                                         :remove-empty-subseqs t))
 
 ;;;
