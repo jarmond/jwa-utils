@@ -5,13 +5,6 @@
 (in-package #:jwa-utils.text)
 
 ;;;
-;;; Constants
-;;;
-
-(define-constant +first-ascii-printable-code+ (char-code #\Space))
-(define-constant +last-ascii-printable-code+ (char-code #\~))
-
-;;;
 ;;; Predicates
 ;;;
 
@@ -33,13 +26,6 @@ within a (English) word."
   "Return true if c is an character which can form part of a (English) word."
   (or (alpha-char-p c)
       (intra-word-punctuation-p c)))
-
-(defun ascii-printable-p (c)
-  "Return true if c is an ASCII printable character."
-  (let ((code (char-code c)))
-    (and (characterp c)
-         (>= code +first-ascii-printable-code+)
-         (<= code +last-ascii-printable-code+))))
 
 ;;;
 ;;; Splitters
