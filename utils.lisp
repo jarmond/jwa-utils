@@ -243,7 +243,11 @@
            ((> ,var ,limit))
          ,@body)))
 
-
+(defmacro if-result (result-form alt-result-form)
+  "Returns value of result-form if not nil, otherwise value of alt-result-form."
+  (with-gensyms (result)
+    `(let ((,result ,result-form))
+       (if ,result ,result ,alt-result-form))))           
 
 
 ;;; String functions

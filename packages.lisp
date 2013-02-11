@@ -43,6 +43,7 @@
    :while
    :until
    :for
+   :if-result
 
    :string-cat
    :string-join
