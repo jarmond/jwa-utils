@@ -58,8 +58,9 @@ within a (English) word."
 
 (defun split-sentences (text)
   "Split text into list of sentences."
-  (split-sequence:split-sequence-if #'sentence-delimiter-p text
-                                    :remove-empty-subseqs t))
+  (mapcar (lambda (sentence) (trim-if #'whitespace-char-p sentence))
+          (split-sequence:split-sequence-if #'sentence-delimiter-p text
+                                            :remove-empty-subseqs t)))
 
 (defun split-words (sentence)
   "Break sentence into a list of words."
