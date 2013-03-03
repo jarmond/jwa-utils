@@ -1,4 +1,9 @@
 
+(defpackage #:jwa-utils-system
+  (:use #:common-lisp #:asdf))
+(in-package #:jwa-utils-system)
+
+
 (asdf:defsystem #:jwa-utils
   :serial t
   :name "jwa-utils"
