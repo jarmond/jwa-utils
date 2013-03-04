@@ -15,10 +15,3 @@
                (:file "utils")
                (:file "size")
                (:file "text")))
-
-(asdf:defsystem #:jwa-repl
-  :serial t
-  :name "jwa-repl"
-  :description "Collection of Common Lisp utilities"
-  :version "0.1"
-  :components ((:file "repl")))
