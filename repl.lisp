@@ -6,7 +6,7 @@
 
 (defpackage #:jwa-repl
   (:use #:cl)
-  (:export #:me1 #:me #:deflex #:lex #:d))
+  (:export #:me1 #:me #:deflex #:lex #:de #:ap #:hex #:bin))
 
 (in-package #:jwa-repl)
 
@@ -61,6 +61,18 @@ shadowed by LET bindings without affecting its dynamic (global) value."
   "Alias for DEFLEX."
   `(deflex ,@args))
 
-(defun d (&rest args)
+(defun de (&rest args)
   "Alias for DESCRIBE."
   (apply #'describe args))
+
+(defun ap (&rest args)
+  "Alias for APROPOS."
+  (apply #'apropos args))
+
+(defun hex (value &optional (size 4))
+  "Print value as hexadecimal."
+  (format t "~v,'0X" size value))
+
+(defun bin (value &optional (size 8))
+  "Print value as binary."
+  (format t "~v,'0B" size value))
