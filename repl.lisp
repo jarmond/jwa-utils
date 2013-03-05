@@ -7,7 +7,7 @@
 (defpackage #:jwa-repl
   (:use #:cl)
   (:nicknames #:r) ; R for REPL
-  (:export #:me1 #:me #:deflex #:lex #:de #:ap #:hex #:bin))
+  (:export #:me1 #:me #:deflex #:lex #:de #:ap #:hex #:bin #:dis))
 
 (in-package #:jwa-repl)
 
