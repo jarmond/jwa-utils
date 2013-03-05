@@ -6,13 +6,14 @@
 
 (defpackage #:jwa-repl
   (:use #:cl)
+  (:nicknames #:r) ; R for REPL
   (:export #:me1 #:me #:deflex #:lex #:de #:ap #:hex #:bin))
 
 (in-package #:jwa-repl)
 
 (defmacro me1 (&rest args)
   "Alias for MACROEXPAND-1."
-  `(macroexpand-1 ,@args))
+  `(pprint (macroexpand-1 ,@args)))
 
 (defmacro me (&rest args)
   "Alias for MACROEXPAND."
@@ -76,3 +77,7 @@ shadowed by LET bindings without affecting its dynamic (global) value."
 (defun bin (value &optional (size 8))
   "Print value as binary."
   (format t "~v,'0B" size value))
+
+(defun dis (&rest args)
+  "Alias for DISASSEMBLE."
+  (apply #'disassemble args))
