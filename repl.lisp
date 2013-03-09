@@ -7,7 +7,7 @@
 (defpackage #:jwa-repl
   (:use #:cl)
   (:nicknames #:r) ; R for REPL
-  (:export #:me1 #:me #:deflex #:lex #:de #:ap #:hex #:bin #:dis))
+  (:export #:me1 #:me #:deflex #:lex #:de #:ap #:hex #:bin #:dis #:oct))
 
 (in-package #:jwa-repl)
 
@@ -77,6 +77,10 @@ shadowed by LET bindings without affecting its dynamic (global) value."
 (defun bin (value &optional (size 8))
   "Print value as binary."
   (format t "~v,'0B" size value))
+
+(defun oct (value &optional (size 3))
+  "Print value as octal."
+  (format t "~v,'0O" size value))
 
 (defun dis (&rest args)
   "Alias for DISASSEMBLE."
