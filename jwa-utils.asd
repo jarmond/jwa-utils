@@ -14,6 +14,4 @@
   :components ((:file "packages")
                (:file "utils")
                (:file "size")
-               (:file "text")
-               (:file "reader")
-               (:file "macros")))
+               (:file "text")))
