@@ -2,29 +2,29 @@
 (defpackage #:jwa-utils
   (:use #:common-lisp)
   (:export
-   
+
    :last1
    :singleton-p
    :append1
    :conc1
    :mklist
-   
+
    :longer
    :filter
    :group
-   
+
    :prune
-   
+
    :find-with-values
    :before
    :after
    :duplicate
    :split-if
-   
+
    :most
    :best
    :mostn
-   
+
    :mapa-b
    :map1-n
    :map0-n
@@ -79,4 +79,10 @@
 
    :split-sentences
    :split-words))
+
+(defpackage #:jwa-utils.reader
+  (:use #:cl #:alexandria))
+
+(defpackage #:jwa-utils.macros
+  (:use #:cl))
 
